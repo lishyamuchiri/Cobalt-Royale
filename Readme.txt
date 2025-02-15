@@ -1,6 +1,5 @@
-Thanks for downloading this template!
+Cobalté Royale
 
-Template Name: Restaurantly
-Template URL: https://bootstrapmade.com/restaurantly-restaurant-template/
-Author: BootstrapMade.com
-License: https://bootstrapmade.com/license/
+Welcome to Cobalté Royale, a luxurious and sophisticated hotel offering world-class hospitality, 
+fine dining, and exceptional services. 
+Our goal is to provide an unforgettable experience for every guest.
