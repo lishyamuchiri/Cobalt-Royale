@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bistro Bliss Chatbot</title>
+    <style>
+        /* General Styles */
+        body {
+
+            font-family: 'Poppins', sans-serif;
+            background: rgba(0, 0, 0, 0.3);
+           background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* Chat Container */
+        #chat-container {
+            position: fixed;
+            bottom: 20PX;
+            width: 400px;
+            background: #111;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            display: flex;
+            padding: 10px;
+            flex-direction: column;
+        }
+
+        /* Chatbox */
+        #chatbox {
+            height: 400px;
+            padding: 10px;
+            overflow-y: auto;
+            color: #fff;
+            
+        }
+
+        /* Messages */
+        .user-message, .bot-message {
+            max-width: 80%;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .user-message {
+            background: #333;
+    color: #fff;
+    padding: 8px;
+    border-radius: 5px;
+    text-align: right;
+    margin-bottom: 5px;
+        }
+
+        .bot-message {
+            background: #e4b560;
+    color: #000;
+    padding: 8px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+        }
+
+        .bot-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        /* Typing Indicator */
+        .typing-indicator {
+            font-size: 14px;
+            color: #888;
+            font-style: italic;
+            display: none;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Input and Buttons */
+        #input-container {
+            display: flex;
+            padding: 10px;
+            background: #fff;
+            border-top: 1px solid #eee;
+        }
+
+        input {
+            width: 80%;
+    padding: 8px;
+    background: #222;
+    border: 1px solid #e4b560;
+    color: #fff;
+    border-radius: 5px;
+        }
+
+        button {
+            padding: 8px;
+    background: #e4b560;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        #sendBtn {
+            background: #28a745;
+            color: white;
+        }
+
+        #sendBtn:hover {
+            background: #218838;
+        }
+
+        #clearBtn {
+            background: #dc3545;
+            color: white;
+        }
+
+        #clearBtn:hover {
+            background: #c82333;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="chat-container">
+        <h2 style="text-align: center; padding: 15px; background: #007bff; color: white; margin: 0;">Welcome to Cobalté Royale Chatbot</h2>
+        <div id="chatbox">
+            <div class="bot-message">
+                <img src="https://img.freepik.com/premium-vector/chatbot-icon-concept-chat-bot-chatterbot-robot-virtual-assistance-website_123447-1615.jpg?w=1380" class="bot-avatar">
+                <span>Hey there! 😊 How can I assist you today? Just type one word like menu, reservation, delivery... 🍽️✨</span>
+            </div>
+        </div>
+
+        <p class="typing-indicator" id="typing">Bot is typing...</p>
+
+        <div id="input-container">
+            <input type="text" id="userInput" placeholder="Type a message..." />
+            <button id="sendBtn" onclick="sendMessage()">Send</button>
+            <button id="clearBtn" onclick="clearChat()">Clear</button>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            let userMessage = document.getElementById("userInput").value.trim().toLowerCase();
+            let chatbox = document.getElementById("chatbox");
+            let typingIndicator = document.getElementById("typing");
+
+            if (userMessage === "") return;
+
+            let responses = {  
+                
+    "hello": "Hi there! 👋 Welcome to Cobalté Royale. How can I assist you today? 😊 (Type 'menu', 'reservation', etc.)",
+    "menu": "Our menu includes delicious meals! 🍽️ Visit the restaurant or check our website for the full menu. 🌐",
+    "booking": "You can book a table online 💻 or call us at 123-456-7890 📞.",
+    "hours": "We are open from 9 AM to 10 PM daily ⏰.",
+    "location": "We are located at 123 Royale Street, Foodie Town 📍.",
+    "goodbye": "Goodbye! 👋 Have a great day, and we hope to see you soon! 🌟",
+    "contact": "You can reach us at support@cobaltéroyale.com 📧 or call 123-456-7890 📞.",
+    "reservation": "Yes! 🎉 You can book a table online 💻 or call us at 123-456-7890 📞.",
+    "delivery": "Yes! 🚗 We offer home delivery. You can order through our website 🌐 or call us 📞.",
+    "chef": "Our head chef, Mr. Pierre 🍳, is a master of French 🇫🇷 and Italian 🇮🇹 cuisine!",
+    "wifi": "Yes, we offer free WiFi! 📶 Just ask our staff for the password 🔑.",
+    "payment": "We accept cash 💵, credit cards 💳, and mobile payments 📱.",
+    "events": "Yes! 🎶 We host live music nights every Friday 🎤 and cooking classes 🍳 on Sundays!",
+    "vegetarian": "Absolutely! 🥗 We have a variety of vegetarian dishes like veggie pasta 🍝 and fresh salads 🥗.",
+    "recommendation": "Our chef recommends trying the Signature Bistro Burger 🍔 with a side of truffle fries 🍟!"
+
+
+};
+
+
+
+
+            let botReply = responses[userMessage] || "Sorry, I don't understand that. Try asking about our menu, booking, or hours.";
+
+            // Add user message
+            chatbox.innerHTML += `<div class="user-message">${userMessage}</div>`;
+
+            // Show typing indicator
+            typingIndicator.style.display = "block";
+
+            // Simulate bot typing delay
+            setTimeout(() => {
+                typingIndicator.style.display = "none";
+                chatbox.innerHTML += `<div class="bot-message">
+                    <img src="https://img.freepik.com/premium-vector/chatbot-icon-concept-chat-bot-chatterbot-robot-virtual-assistance-website_123447-1615.jpg?w=1380" class="bot-avatar">
+                    <span>${botReply}</span>
+                </div>`;
+
+                chatbox.scrollTop = chatbox.scrollHeight; // Auto-scroll to latest message
+            }, 1000);
+
+            document.getElementById("userInput").value = "";
+        }
+
+        function clearChat() {
+            document.getElementById("chatbox").innerHTML = `<div class="bot-message">
+                <img src="https://img.freepik.com/premium-vector/chatbot-icon-concept-chat-bot-chatterbot-robot-virtual-assistance-website_123447-1615.jpg?w=1380" class="bot-avatar">
+                <span>Hi! How can I help you today?</span>
+            </div>`;
+        }
+    </script>
+
+</body>
+</html>
