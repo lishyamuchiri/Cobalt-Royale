@@ -7,17 +7,16 @@
     <style>
         /* General Styles */
         body {
-
             font-family: 'Poppins', sans-serif;
             background: rgba(0, 0, 0, 0.3);
-           background-size: cover;
+            background-size: cover;
             background-position: center;
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 50vh;
         }
 
         h2 {
@@ -30,23 +29,22 @@
         #chat-container {
             position: fixed;
             bottom: 20PX;
-            width: 400px;
+            width: 200px;
             background: #111;
-            border-radius: 10px;
+            border-radius: 1px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
             overflow: hidden;
             display: flex;
-            padding: 10px;
+            padding: 2px;
             flex-direction: column;
+            height: auto; /* Adjust the height automatically */
         }
 
         /* Chatbox */
         #chatbox {
-            height: 400px;
-            padding: 10px;
+            padding: 8px;
             overflow-y: auto;
             color: #fff;
-            
         }
 
         /* Messages */
@@ -62,19 +60,19 @@
 
         .user-message {
             background: #333;
-    color: #fff;
-    padding: 8px;
-    border-radius: 5px;
-    text-align: right;
-    margin-bottom: 5px;
+            color: #fff;
+            padding: 8px;
+            border-radius: 5px;
+            text-align: right;
+            margin-bottom: 5px;
         }
 
         .bot-message {
             background: #e4b560;
-    color: #000;
-    padding: 8px;
-    border-radius: 5px;
-    margin-bottom: 5px;
+            color: #000;
+            padding: 8px;
+            border-radius: 5px;
+            margin-bottom: 5px;
         }
 
         .bot-avatar {
@@ -104,20 +102,20 @@
 
         input {
             width: 80%;
-    padding: 8px;
-    background: #222;
-    border: 1px solid #e4b560;
-    color: #fff;
-    border-radius: 5px;
+            padding: 8px;
+            background: #222;
+            border: 1px solid #e4b560;
+            color: #fff;
+            border-radius: 5px;
         }
 
         button {
             padding: 8px;
-    background: #e4b560;
-    color: #000;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+            background: #e4b560;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
             transition: background 0.3s ease;
         }
 
@@ -139,25 +137,23 @@
             background: #c82333;
         }
 
-        
- /* Media Queries for Responsiveness */
- @media (max-width: 768px) {
-        body {
-            height: auto;
-        }
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            body {
+                height: auto;
+            }
 
-        #chat-container {
-            width: 100%;
-            max-width: none;
-            bottom: 0;
-            border-radius: 0;
-        }
+            #chat-container {
+                width: 90%;
+                max-width: none;
+                bottom: 0;
+                border-radius: 0;
+            }
 
-        #chatbox {
-            height: 300px;
+            #chatbox {
+                height: 200px;
+            }
         }
-    }
-
 
         /* Animations */
         @keyframes fadeIn {
@@ -200,29 +196,23 @@
 
             if (userMessage === "") return;
 
-            let responses = {  
-                
-    "hello": "Hi there! 👋 Welcome to Cobalté Royale. How can I assist you today? 😊 (Type 'menu', 'reservation', etc.)",
-    "menu": "Our menu includes delicious meals! 🍽️ Visit the restaurant or check our website for the full menu. 🌐",
-    "booking": "You can book a table online 💻 or call us at 123-456-7890 📞.",
-    "hours": "We are open from 9 AM to 10 PM daily ⏰.",
-    "location": "We are located at 123 Royale Street, Foodie Town 📍.",
-    "goodbye": "Goodbye! 👋 Have a great day, and we hope to see you soon! 🌟",
-    "contact": "You can reach us at support@cobaltéroyale.com 📧 or call 123-456-7890 📞.",
-    "reservation": "Yes! 🎉 You can book a table online 💻 or call us at 123-456-7890 📞.",
-    "delivery": "Yes! 🚗 We offer home delivery. You can order through our website 🌐 or call us 📞.",
-    "chef": "Our head chef, Mr. Pierre 🍳, is a master of French 🇫🇷 and Italian 🇮🇹 cuisine!",
-    "wifi": "Yes, we offer free WiFi! 📶 Just ask our staff for the password 🔑.",
-    "payment": "We accept cash 💵, credit cards 💳, and mobile payments 📱.",
-    "events": "Yes! 🎶 We host live music nights every Friday 🎤 and cooking classes 🍳 on Sundays!",
-    "vegetarian": "Absolutely! 🥗 We have a variety of vegetarian dishes like veggie pasta 🍝 and fresh salads 🥗.",
-    "recommendation": "Our chef recommends trying the Signature Bistro Burger 🍔 with a side of truffle fries 🍟!"
-
-
-};
-
-
-
+            let responses = {
+                "hello": "Hi there! 👋 Welcome to Cobalté Royale. How can I assist you today? 😊 (Type 'menu', 'reservation', etc.)",
+                "menu": "Our menu includes delicious meals! 🍽️ Visit the restaurant or check our website for the full menu. 🌐",
+                "booking": "You can book a table online 💻 or call us at 123-456-7890 📞.",
+                "hours": "We are open from 9 AM to 10 PM daily ⏰.",
+                "location": "We are located at 123 Royale Street, Foodie Town 📍.",
+                "goodbye": "Goodbye! 👋 Have a great day, and we hope to see you soon! 🌟",
+                "contact": "You can reach us at support@cobaltéroyale.com 📧 or call 123-456-7890 📞.",
+                "reservation": "Yes! 🎉 You can book a table online 💻 or call us at 123-456-7890 📞.",
+                "delivery": "Yes! 🚗 We offer home delivery. You can order through our website 🌐 or call us 📞.",
+                "chef": "Our head chef, Mr. Pierre 🍳, is a master of French 🇫🇷 and Italian 🇮🇹 cuisine!",
+                "wifi": "Yes, we offer free WiFi! 📶 Just ask our staff for the password 🔑.",
+                "payment": "We accept cash 💵, credit cards 💳, and mobile payments 📱.",
+                "events": "Yes! 🎶 We host live music nights every Friday 🎤 and cooking classes 🍳 on Sundays!",
+                "vegetarian": "Absolutely! 🥗 We have a variety of vegetarian dishes like veggie pasta 🍝 and fresh salads 🥗.",
+                "recommendation": "Our chef recommends trying the Signature Bistro Burger 🍔 with a side of truffle fries 🍟!"
+            };
 
             let botReply = responses[userMessage] || "Sorry, I don't understand that. Try asking about our menu, booking, or hours.";
 
