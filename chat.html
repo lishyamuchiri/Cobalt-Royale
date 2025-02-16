@@ -34,40 +34,42 @@
         }
         
         /* Chat Container */
-        #chat-container {
-            position: fixed;
-            bottom: 0;
-            width: 100vw;
-            background: #111;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-            display: flex;
-            padding: 10px;
-            flex-direction: column;
-            margin: 0 10px;
-        }
+        /* Chat Container */
+        @media screen and (max-width: 600px) {
+#chat-container {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: 600px; /* Max width for larger screens */
+    background: #111;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto; /* Center align */
+}
 
         /* Chatbox */
-        #chatbox {
-            height: 400px;
-            padding: 10px;
-            overflow-y: auto;
-            color: #fff;
-            
-        }
+       /* Chatbox */
+#chatbox {
+    height: 400px;
+    padding: 10px;
+    overflow-y: auto;
+    color: #fff;
+}
 
         /* Messages */
-        .user-message, .bot-message {
-            max-width: 80%;
-            padding: 10px;
-            margin: 10px;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            animation: fadeIn 0.3s ease-in-out;
-        }
-
+         /* Messages */
+    .user-message, .bot-message {
+        max-width: 80%;
+        padding: 10px;
+        margin: 10px;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        animation: fadeIn 0.3s ease-in-out;
+    }
         .user-message {
             background: #333;
     color: #fff;
@@ -111,7 +113,8 @@
         }
 
         input {
-            width: 80%;
+             width: calc(100% - 20px);
+        margin: 0 10px;
     padding: 8px;
     background: #222;
     border: 1px solid #e4b560;
@@ -166,6 +169,7 @@
                 transform: translateY(0);
             }
         }
+    }
     </style>
 </head>
 <body>
